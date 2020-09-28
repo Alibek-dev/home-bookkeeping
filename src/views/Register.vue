@@ -30,7 +30,7 @@
             </div>
             <p>
                 <label>
-                    <input type="checkbox" />
+                    <input type="checkbox"/>
                     <span>С правилами согласен</span>
                 </label>
             </p>
