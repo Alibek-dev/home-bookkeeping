@@ -8,15 +8,37 @@ import messagePlugin from './utils/message.plugin'
 import 'materialize-css/dist/js/materialize.min'
 import './registerServiceWorker'
 
-Vue.config.productionTip = false
-
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
 
 Vue.filter('date', dateFilter)
 Vue.use(Vuelidate)
 Vue.use(messagePlugin)
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+Vue.config.productionTip = false
+
+firebase.initializeApp({
+  apiKey: "AIzaSyBXy_rZuGrr5v773VWq8oxryW5QiPgFO2s",
+  authDomain: "home-bookkeeping-ff877.firebaseapp.com",
+  databaseURL: "https://home-bookkeeping-ff877.firebaseio.com",
+  projectId: "home-bookkeeping-ff877",
+  storageBucket: "home-bookkeeping-ff877.appspot.com",
+  messagingSenderId: "679177081656",
+  appId: "1:679177081656:web:1bbb462765dc90b57c27cd",
+  measurementId: "G-P56HB5XNVR"
+})
+
+let app
+
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  }
+})
+
+

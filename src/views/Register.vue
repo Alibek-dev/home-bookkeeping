@@ -78,6 +78,7 @@
 
 <script>
     import {email, required, minLength} from "vuelidate/lib/validators";
+    import messages from "../utils/messages";
 
     export default {
         name: "Register",
@@ -95,9 +96,12 @@
         },
 
         methods: {
-            submitHandler() {
+            async submitHandler() {
                 if (this.$v.$invalid) {
                     this.$v.$touch()
+                    if (this.$v.agree.$invalid) {
+                        this.$message(messages['agree-invalid'])
+                    }
                     return
                 }
 
@@ -107,8 +111,10 @@
                     name: this.name
                 }
 
-                console.log(formData)
-                this.$router.push('/')
+                try {
+                    await this.$store.dispatch('register', formData)
+                    this.$router.push('/')
+                } catch (e) {}
             }
         }
     }
