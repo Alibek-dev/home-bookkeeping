@@ -28,8 +28,7 @@
                     <span
                             v-if="$v.title.$dirty && !$v.title.required"
                             class="helper-text invalid"
-                    >
-                        Введите название категории
+                    >Введите название категории
                     </span>
                 </div>
 
@@ -44,8 +43,7 @@
                     <span
                             v-if="$v.limit.$dirty && !$v.limit.minValue"
                             class="helper-text invalid"
-                    >
-                        Минимальная величина {{ $v.limit.$params.minValue.min }}
+                    >Минимальная величина {{ $v.limit.$params.minValue.min }}
                     </span>
                 </div>
 
@@ -91,9 +89,7 @@
                     await this.$store.dispatch('updateCategory', categoryData)
                     this.$message('Категория успешно обновлена')
                     this.$emit('updated', categoryData)
-                } catch (e) {
-
-                }
+                } catch (e) {}
             }
         },
         validations: {
