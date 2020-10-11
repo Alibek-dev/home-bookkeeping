@@ -90,6 +90,11 @@
 
     export default {
         name: "Record",
+        metaInfo() {
+            return {
+                title: this.$title('Menu_Record')
+            }
+        },
         data: () => ({
             loading: true,
             select: null,
